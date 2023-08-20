@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from "../../common/nav-bar";
 import {PurchaseTable} from "./purchase-table";
 import {AdditionTable} from "./addition-table";
+import {ColumnChart} from "./column-chart";
 
 export const Home = () => {
     console.log("this test");
@@ -9,9 +10,8 @@ export const Home = () => {
     return (
         <>
             <Navbar/>
-            <h1>
-                This is a test for home
-            </h1>
+            <h2> Column Chart:</h2>
+            <ColumnChart/>
             <h2> Purchases:</h2>
             <PurchaseTable/>
             <br/>
