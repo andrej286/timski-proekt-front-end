@@ -12,7 +12,7 @@ instance.interceptors.request.use(
     (config) => {
         const token = TokenService.getLocalAccessToken();
         if (token) {
-            config.headers["x-access-token"] = token; // for Node.js Express back-end
+            config.headers["x-access-token"] = token;
         }
         return config;
     },
@@ -28,13 +28,13 @@ instance.interceptors.response.use(
     async (err) => {
         const originalConfig = err.config;
 
-        if (originalConfig.url !== "/customer/login" && err.response) {
+        if (originalConfig.url !== "/customer/login/" && err.response) {
             // Access Token was expired
             if (err.response.status === 401 && !originalConfig._retry) {
                 originalConfig._retry = true;
 
                 try {
-                    const rs = await instance.post("/customer/login/refresh", {
+                    const rs = await instance.post("/customer/login/refresh/", {
                         refreshToken: TokenService.getLocalRefreshToken(),
                     });
 

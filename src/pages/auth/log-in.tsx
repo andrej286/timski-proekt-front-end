@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from "../../common/nav-bar";
 import styled from 'styled-components';
+import AuthService from "../../services/auth/auth-api-service";
 
 const LoginContainer = styled.div`
   display: flex;
@@ -34,7 +35,11 @@ export const LogIn = () => {
     const [password, setPassword] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
+
         e.preventDefault();
+
+        const apiReturn = AuthService.login(email, password);
+        console.log("apiReturn here: ", apiReturn);
     };
 
     return (

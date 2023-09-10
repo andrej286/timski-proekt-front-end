@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from "../../common/nav-bar";
 import styled from 'styled-components';
+import AuthService from "../../services/auth/auth-api-service";
 
 const SignUpContainer = styled.div`
   display: flex;
@@ -30,7 +31,6 @@ const SignUpButton = styled.button`
 `;
 
 export const SignUp = () => {
-    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [email, setEmail] = useState('');
@@ -40,6 +40,9 @@ export const SignUp = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
+        const apiReturn = AuthService.register(password, password2, email, firstName, lastName, dob);
+        console.log("apiReturn here: ", apiReturn);
     };
 
     return (
@@ -48,12 +51,6 @@ export const SignUp = () => {
             <SignUpContainer>
                 <h2>Sign Up</h2>
                 <SignUpForm onSubmit={handleSubmit}>
-                    <SignUpInput
-                        type="text"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
                     <SignUpInput
                         type="password"
                         placeholder="Password"
