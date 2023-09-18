@@ -9,11 +9,16 @@ class AuthService {
                 password
             })
             .then(response => {
-                if (response.data.accessToken) {
-                    TokenService.setUser(response.data);
+                console.log("in AuthService login with response : ", response)
+
+                if (response.data.access) {
+                    TokenService.setTokens(response.data.access, response.data.refresh);
                 }
 
                 return response.data;
+            })
+            .catch(err => {
+                console.log('we have an error in login, err: ', err);
             });
     }
 
@@ -29,11 +34,9 @@ class AuthService {
             first_name,
             last_name,
             date_of_birth,
-        });
-    }
-
-    getCurrentUser() {
-        return TokenService.getUser();
+        }).then(response => {
+                console.log("in AuthService register with response : ", response)
+            });
     }
 }
 

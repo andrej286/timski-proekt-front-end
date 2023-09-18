@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from "../../common/nav-bar";
 import styled from 'styled-components';
 import AuthService from "../../services/auth/auth-api-service";
+import { useNavigate } from "react-router-dom";
 
 const LoginContainer = styled.div`
   display: flex;
@@ -33,6 +34,7 @@ const LoginButton = styled.button`
 export const LogIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
 
@@ -40,6 +42,8 @@ export const LogIn = () => {
 
         const apiReturn = AuthService.login(email, password);
         console.log("apiReturn here: ", apiReturn);
+
+        navigate("/home");
     };
 
     return (

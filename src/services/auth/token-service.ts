@@ -1,35 +1,33 @@
 class TokenService {
     getLocalRefreshToken() {
         // @ts-ignore
-        const user = JSON.parse(localStorage.getItem("user"));
-        return user?.refreshToken;
+        const refresh = JSON.parse(localStorage.getItem("refresh"));
+        console.log('hit inside Token service getLocalRefreshToken with user:', refresh)
+        return refresh;
     }
 
     getLocalAccessToken() {
         // @ts-ignore
-        const user = JSON.parse(localStorage.getItem("user"));
-        return user?.accessToken;
+        const access = JSON.parse(localStorage.getItem("access"));
+        console.log('hit inside Token service getLocalAccessToken with access:', access)
+        return access;
     }
 
     updateLocalAccessToken(token: any) {
         // @ts-ignore
-        let user = JSON.parse(localStorage.getItem("user"));
-        user.accessToken = token;
-        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("access", JSON.stringify(token));
+        console.log('hit inside Token service updateLocalAccessToken with token:', token)
     }
 
-    getUser() {
-        // @ts-ignore
-        return JSON.parse(localStorage.getItem("user"));
-    }
-
-    setUser(user: any) {
-        console.log(JSON.stringify(user));
-        localStorage.setItem("user", JSON.stringify(user));
+    setTokens(access: any, refresh: any) {
+        localStorage.setItem("access", JSON.stringify(access));
+        localStorage.setItem("refresh", JSON.stringify(refresh));
+        console.log('hit inside Token service setUser with access:', access, 'and refresh ',refresh)
     }
 
     removeUser() {
-        localStorage.removeItem("user");
+        localStorage.removeItem("access");
+        localStorage.removeItem("refresh");
     }
 }
 
