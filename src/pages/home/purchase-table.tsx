@@ -22,33 +22,16 @@ const Td = styled.td`
   padding: 8px;
 `;
 
-export const PurchaseTable = () => {
-    const purchases = [
-        {
-            amount: 1000,
-            description: "description1",
-            date: "2020-03-20:17:30:00",
-            name: "Football",
-        },
-        {
-            amount: 2000,
-            description: "description2",
-            date: "2020-05-20:11:20:00",
-            name: "Football",
-        },
-        {
-            amount: 1400,
-            description: "description3",
-            date: "2020-07-20:14:30:00",
-            name: "Takeaway",
-        },
-        {
-            amount: 1500,
-            description: "description4",
-            date: "2020-09-20:20:30:00",
-            name: "Bill",
-        },
-    ]
+export const PurchaseTable = (purchases: any) => {
+
+    const table = Object.values(purchases)?.map((value: any, index) => {
+        return <tr key={index}>
+            <Td>{value[index]?.amount}</Td>
+            <Td>{value[index]?.description}</Td>
+            <Td>{value[index]?.date}</Td>
+            <Td>{value[index]?.expense_type.name}</Td>
+        </tr>
+    });
 
     return (
     <TableContainer>
@@ -62,14 +45,7 @@ export const PurchaseTable = () => {
             </tr>
             </thead>
             <tbody>
-            {purchases.map((item, index) => (
-                <tr key={index}>
-                    <Td>{item.amount}</Td>
-                    <Td>{item.description}</Td>
-                    <Td>{item.date}</Td>
-                    <Td>{item.name}</Td>
-                </tr>
-            ))}
+            {table}
             </tbody>
         </Table>
     </TableContainer>

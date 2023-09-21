@@ -22,33 +22,16 @@ const Td = styled.td`
   padding: 8px;
 `;
 
-export const AdditionTable = () => {
-    const addition = [
-        {
-            amount: 1000,
-            description: "description1",
-            date: "2020-03-20:17:30:00",
-            id: 0,
-        },
-        {
-            amount: 2000,
-            description: "description2",
-            date: "2020-05-20:11:20:00",
-            id: 0,
-        },
-        {
-            amount: 1400,
-            description: "description3",
-            date: "2020-07-20:14:30:00",
-            id: 1,
-        },
-        {
-            amount: 1500,
-            description: "description4",
-            date: "2020-09-20:20:30:00",
-            id: 2,
-        },
-    ]
+export const AdditionTable = (additions: any) => {
+
+    const table = Object.values(additions).map((value: any, index) => {
+        return <tr key={index}>
+            <Td>{value[index]?.amount}</Td>
+            <Td>{value[index]?.description}</Td>
+            <Td>{value[index]?.date}</Td>
+            <Td>{value[index]?.id}</Td>
+        </tr>
+    });
 
     return (
         <TableContainer>
@@ -62,14 +45,7 @@ export const AdditionTable = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {addition.map((item, index) => (
-                    <tr key={index}>
-                        <Td>{item.amount}</Td>
-                        <Td>{item.description}</Td>
-                        <Td>{item.date}</Td>
-                        <Td>{item.id}</Td>
-                    </tr>
-                ))}
+                {table}
                 </tbody>
             </Table>
         </TableContainer>
