@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Navbar from "../../common/nav-bar";
 import {PurchaseTable} from "./purchase-table";
 import {AdditionTable} from "./addition-table";
@@ -15,31 +15,34 @@ export type Purchase = {
 }
 
 export const Home = () => {
-    console.log("this test");
-
     const [purchases, setPurchases] = useState([]);
     const [additions, setAdditions] = useState([]);
 
-    const handleGetPurchases = useCallback(() => {
-        console.log("hit get purchases");
-
+    const fetchPurchases = useCallback(() => {
         api.get(`/purchase/`, { withCredentials: true, headers: {
                 "Authorization": `Bearer ${TokenService.getLocalAccessToken()}`
             }
         }).then(response => {setPurchases(response.data)})
+    }, []);
+
+    const fetchAdditions = useCallback(() => {
         api.get(`/addition/`, { withCredentials: true, headers: {
                 "Authorization": `Bearer ${TokenService.getLocalAccessToken()}`
             }
         }).then(response => {setAdditions(response.data)})
     }, []);
 
+    useEffect(() => {
+        fetchPurchases();
+        fetchAdditions();
+    }, []);
+
     return (
         <>
             <Navbar/>
-            <button onClick={handleGetPurchases}> Test get purchases </button>
             <FileUploadForm/>
             <h2> Column Chart:</h2>
-            <ColumnChart />
+            <ColumnChart purchases={purchases}/>
             <h2> Purchases:</h2>
             <PurchaseTable purchases={purchases}/>
             <br/>

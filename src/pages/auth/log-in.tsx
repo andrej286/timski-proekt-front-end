@@ -37,13 +37,8 @@ export const LogIn = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
-
         e.preventDefault();
-
-        const apiReturn = AuthService.login(email, password);
-        console.log("apiReturn here: ", apiReturn);
-
-        navigate("/home");
+        AuthService.login(email, password).finally(() => navigate("/home"));
     };
 
     return (

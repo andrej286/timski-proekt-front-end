@@ -42,11 +42,9 @@ export const SignUp = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-
-        const apiReturn = AuthService.register(password, password2, email, firstName, lastName, dob);
-        console.log("apiReturn here: ", apiReturn);
-
-        navigate("/home");
+        AuthService
+            .register(password, password2, email, firstName, lastName, dob)
+            .finally(() => navigate("/home"));
     };
 
     return (
