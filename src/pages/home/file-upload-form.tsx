@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import {fileApi} from "../../services/api";
+import TokenService from "../../services/auth/token-service";
 
 const FormContainer = styled.form`
   display: flex;
@@ -21,7 +23,7 @@ const UploadButton = styled.button`
 `;
 
 const FileUploadForm = () => {
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [purchases, setSelectedFile] = useState<any>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files && e.target.files[0];
@@ -29,9 +31,15 @@ const FileUploadForm = () => {
     };
 
     const handleFormSubmit = (e: React.FormEvent) => {
+
+        const formData = new FormData();
+        formData.append('purchases', purchases);
+
         e.preventDefault();
-        if (selectedFile) {
-            // file upload logic here
+        if (purchases) {
+            fileApi.post("/purchase/upload", formData, { withCredentials: true, headers: {
+                    "Authorization": `Bearer ${TokenService.getLocalAccessToken()}`
+                }}).catch(err => console.log('error is here : ', err));
         }
     };
 

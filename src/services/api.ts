@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const instance = axios.create({
+export const api = axios.create({
     baseURL: "http://localhost:8000/",
     // baseURL: "http://sekuloski.mk:27015",
     headers: {
@@ -9,4 +9,11 @@ const instance = axios.create({
     withCredentials: true,
 });
 
-export default instance;
+export const fileApi = axios.create({
+    baseURL: "http://localhost:8000/",
+    // baseURL: "http://sekuloski.mk:27015",
+    headers: {
+        "Content-Type": "multipart/form-data",
+    },
+    withCredentials: true,
+});

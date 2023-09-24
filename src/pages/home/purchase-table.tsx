@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Purchase} from "./home";
 
 const TableContainer = styled.div`
   width: 100%;
@@ -23,13 +24,12 @@ const Td = styled.td`
 `;
 
 export const PurchaseTable = (purchases: any) => {
-
-    const table = Object.values(purchases)?.map((value: any, index) => {
-        return <tr key={index}>
-            <Td>{value[index]?.amount}</Td>
-            <Td>{value[index]?.description}</Td>
-            <Td>{value[index]?.date}</Td>
-            <Td>{value[index]?.expense_type.name}</Td>
+    const table = purchases.purchases?.map((value: Purchase) => {
+        return <tr>
+            <Td>{value?.amount}</Td>
+            <Td>{value?.description}</Td>
+            <Td>{value?.date}</Td>
+            <Td>{value?.expense_type.name}</Td>
         </tr>
     });
 

@@ -4,8 +4,8 @@ import {PurchaseTable} from "./purchase-table";
 import {AdditionTable} from "./addition-table";
 import {ColumnChart} from "./column-chart";
 import FileUploadForm from "./file-upload-form";
-import api from "../../services/api";
 import TokenService from "../../services/auth/token-service";
+import {api} from "../../services/api";
 
 export type Purchase = {
     amount: number,
@@ -39,7 +39,7 @@ export const Home = () => {
             <button onClick={handleGetPurchases}> Test get purchases </button>
             <FileUploadForm/>
             <h2> Column Chart:</h2>
-            <ColumnChart/>
+            <ColumnChart />
             <h2> Purchases:</h2>
             <PurchaseTable purchases={purchases}/>
             <br/>

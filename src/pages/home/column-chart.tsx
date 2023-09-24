@@ -2,6 +2,17 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import {ApexOptions} from "apexcharts";
 
+const getChartDate = (dateString: string) => {
+    const date = new Date(dateString);
+
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"
+    ];
+
+    return monthNames[date.getMonth()];
+}
+
 export const ColumnChart = () => {
     const purchases = [
         {
@@ -35,7 +46,7 @@ export const ColumnChart = () => {
             type: 'bar',
         },
         xaxis: {
-            categories: purchases.map(item => item.date),
+            categories: purchases.map(item => getChartDate(item.date)),
         },
     };
 

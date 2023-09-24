@@ -23,13 +23,12 @@ const Td = styled.td`
 `;
 
 export const AdditionTable = (additions: any) => {
-
-    const table = Object.values(additions).map((value: any, index) => {
-        return <tr key={index}>
-            <Td>{value[index]?.amount}</Td>
-            <Td>{value[index]?.description}</Td>
-            <Td>{value[index]?.date}</Td>
-            <Td>{value[index]?.id}</Td>
+    const table = additions.additions.map((value: any) => {
+        return <tr>
+            <Td>{value?.amount}</Td>
+            <Td>{value?.description}</Td>
+            <Td>{value?.date}</Td>
+            <Td>{value?.id}</Td>
         </tr>
     });
 
