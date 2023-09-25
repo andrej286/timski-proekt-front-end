@@ -40,7 +40,7 @@ export const Home = () => {
     return (
         <>
             <Navbar/>
-            <FileUploadForm/>
+            <FileUploadForm onFileUpload={fetchPurchases}/>
             <h2> Column Chart:</h2>
             <ColumnChart purchases={purchases}/>
             <h2> Purchases:</h2>

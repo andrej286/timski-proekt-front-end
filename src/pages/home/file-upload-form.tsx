@@ -22,7 +22,7 @@ const UploadButton = styled.button`
   margin-right: 60px;
 `;
 
-const FileUploadForm = () => {
+const FileUploadForm = (props: { onFileUpload: () => void }) => {
     const [purchases, setSelectedFile] = useState<any>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +39,9 @@ const FileUploadForm = () => {
         if (purchases) {
             fileApi.post("/purchase/upload", formData, { withCredentials: true, headers: {
                     "Authorization": `Bearer ${TokenService.getLocalAccessToken()}`
-                }}).catch(err => console.log('error is here : ', err));
+                }})
+                .catch(err => console.log('error is here : ', err))
+                .finally(() => props.onFileUpload());
         }
     };
 
