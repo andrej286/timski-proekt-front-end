@@ -16,9 +16,20 @@ export const ColumnChart = (purchases: any) => {
 
     const [selectedYear, setSelectedYear] = useState('2023');
 
-    const filteredPurchases = useMemo(
-        () => purchases.purchases?.filter(
-            (purchase: Purchase) => { return new Date(purchase.date).getFullYear().toString() == selectedYear}),
+    const purchasesByMonth = useMemo(
+        () => {
+            const purchasesByMonth = new Array(12).fill(0);
+
+            purchases.purchases?.filter(
+                (purchase: Purchase) => {
+                    return new Date(purchase.date).getFullYear().toString() == selectedYear
+                }).forEach((purchase : Purchase) => {
+                const month = new Date(purchase.date).getMonth();
+                purchasesByMonth[month] += purchase.amount;
+            });
+
+           return purchasesByMonth;
+        },
         [purchases, selectedYear]);
 
     const chartOptions: ApexOptions = {
@@ -33,7 +44,7 @@ export const ColumnChart = (purchases: any) => {
     const chartSeries = [
         {
             name: 'Series 1',
-            data: filteredPurchases.map((purchase: Purchase) => purchase?.amount),
+            data: purchasesByMonth,
         },
     ];
 
