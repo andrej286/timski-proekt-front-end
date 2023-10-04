@@ -22,8 +22,18 @@ const UploadButton = styled.button`
   margin-right: 60px;
 `;
 
-const FileUploadForm = (props: { onFileUpload: () => void }) => {
-    const [purchases, setSelectedFile] = useState<any>(null);
+export const enum UploadType {
+    PURCHASES = 'purchases',
+    ADDITIONS = 'additions',
+}
+
+export const URLs = {
+    uploadPurchases: "/purchase/upload",
+    uploadAdditions: "/addition/upload"
+}
+
+const FileUploadForm = (props: { onFileUpload: () => void, uploadType: UploadType }) => {
+    const [selectedFile, setSelectedFile] = useState<any>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files && e.target.files[0];
@@ -33,11 +43,13 @@ const FileUploadForm = (props: { onFileUpload: () => void }) => {
     const handleFormSubmit = (e: React.FormEvent) => {
 
         const formData = new FormData();
-        formData.append('purchases', purchases);
 
         e.preventDefault();
-        if (purchases) {
-            fileApi.post("/purchase/upload", formData, { withCredentials: true, headers: {
+        if (selectedFile) {
+            const url = props.uploadType == UploadType.PURCHASES ? URLs.uploadPurchases : URLs.uploadAdditions
+
+            formData.append(props.uploadType, selectedFile);
+            fileApi.post(url, formData, { withCredentials: true, headers: {
                     "Authorization": `Bearer ${TokenService.getLocalAccessToken()}`
                 }})
                 .catch(err => console.log('error is here : ', err))
@@ -47,7 +59,7 @@ const FileUploadForm = (props: { onFileUpload: () => void }) => {
 
     return (
         <FormContainer onSubmit={handleFormSubmit} encType="multipart/form-data">
-            <FileInput type="file" name="additions" onChange={handleFileChange} />
+            <FileInput type="file" name={props.uploadType} onChange={handleFileChange} />
             <UploadButton type="submit">Upload File</UploadButton>
         </FormContainer>
     );

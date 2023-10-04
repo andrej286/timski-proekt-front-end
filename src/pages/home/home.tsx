@@ -3,7 +3,7 @@ import Navbar from "../../common/nav-bar";
 import {PurchaseTable} from "./purchase-table";
 import {AdditionTable} from "./addition-table";
 import {ColumnChart} from "./column-chart";
-import FileUploadForm from "./file-upload-form";
+import FileUploadForm, {UploadType} from "./file-upload-form";
 import TokenService from "../../services/auth/token-service";
 import {api} from "../../services/api";
 
@@ -40,13 +40,14 @@ export const Home = () => {
     return (
         <>
             <Navbar/>
-            <FileUploadForm onFileUpload={fetchPurchases}/>
             <h2> Column Chart:</h2>
             <ColumnChart purchases={purchases}/>
             <h2> Purchases:</h2>
+            <FileUploadForm onFileUpload={fetchPurchases} uploadType={UploadType.PURCHASES}/>
             <PurchaseTable purchases={purchases}/>
             <br/>
             <h2> Additions:</h2>
+            <FileUploadForm onFileUpload={fetchAdditions} uploadType={UploadType.ADDITIONS}/>
             <AdditionTable additions={additions}/>
         </>
     );
