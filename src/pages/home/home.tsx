@@ -5,7 +5,7 @@ import {AdditionTable} from "./addition-table";
 import {ColumnChart} from "./column-chart";
 import FileUploadForm, {UploadType} from "./file-upload-form";
 import TokenService from "../../services/auth/token-service";
-import {api} from "../../services/api";
+import {api, refreshToken} from "../../services/api";
 
 export type Purchase = {
     amount: number,
@@ -22,14 +22,18 @@ export const Home = () => {
         api.get(`/purchase/`, { withCredentials: true, headers: {
                 "Authorization": `Bearer ${TokenService.getLocalAccessToken()}`
             }
-        }).then(response => {setPurchases(response.data)})
+        })
+            .then(response => {setPurchases(response.data)})
+            .catch(err => refreshToken(err.config))
     }, []);
 
     const fetchAdditions = useCallback(() => {
         api.get(`/addition/`, { withCredentials: true, headers: {
                 "Authorization": `Bearer ${TokenService.getLocalAccessToken()}`
             }
-        }).then(response => {setAdditions(response.data)})
+        })
+            .then(response => {setAdditions(response.data)})
+            .catch(err => refreshToken(err.config))
     }, []);
 
     useEffect(() => {

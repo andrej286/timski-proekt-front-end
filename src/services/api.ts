@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, {AxiosRequestConfig} from "axios";
+import TokenService from "./auth/token-service";
 
 export const api = axios.create({
     baseURL: "http://localhost:8000/",
@@ -17,3 +18,15 @@ export const fileApi = axios.create({
     },
     withCredentials: true,
 });
+
+export function refreshToken(originalRequest: AxiosRequestConfig) {
+    if (originalRequest.url !== "/customer/login/" && originalRequest.data) {
+        api.post('/customer/login/refresh/', {
+            refresh: TokenService.getLocalRefreshToken(),
+        })
+        .then((response) => {
+           const newAccessToken = response.data.access;
+            TokenService.updateLocalAccessToken(newAccessToken);
+        });
+    }
+}
