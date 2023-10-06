@@ -15,9 +15,7 @@ const NavList = styled.ul`
   padding: 0;
 `;
 
-const NavItem = styled.li`
-  margin: 0 1rem;
-`;
+
 
 const NavLink = styled(Link)`
   text-decoration: none;
@@ -27,22 +25,36 @@ const NavLink = styled(Link)`
     text-decoration: underline;
   }
 `;
+const Navbarr = styled.div`
+  background-color: #f8f9fa;
+  color: #dc3545;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+`;
+
+const NavItem = styled.a`
+  text-decoration: none;
+  color: #343a40;
+  margin-right: 20px;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 const Navbar = () => {
     return (
-        <Nav>
-            <NavList>
-                <NavItem>
-                    <NavLink to="/home">Home</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink to="/sign-up">Sign Up</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink to="/log-in">Log In</NavLink>
-                </NavItem>
-            </NavList>
-        </Nav>
+      <Navbarr>
+      <div>
+        <NavItem href="/home">Home</NavItem>
+      </div>
+      <div>
+        <NavItem href="#">About</NavItem>
+        <NavItem href="#">Services</NavItem>
+        <NavItem href="#">Contact</NavItem>
+      </div>
+    </Navbarr>
     );
 };
 

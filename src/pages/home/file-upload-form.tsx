@@ -4,24 +4,40 @@ import {fileApi} from "../../services/api";
 import TokenService from "../../services/auth/token-service";
 
 const FormContainer = styled.form`
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 `;
 
 const FileInput = styled.input`
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 14px;
 `;
 
 const UploadButton = styled.button`
-  background-color: #007bff;
-  color: white;
+  background-color: #4caf50;
+  color: #fff;
   border: none;
-  padding: 10px 20px;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
   cursor: pointer;
-  margin-right: 60px;
-`;
+  transition: background-color 0.3s ease;
 
+  &:hover {
+    background-color: #45a049;
+  }
+`;
 export const enum UploadType {
     PURCHASES = 'purchases',
     ADDITIONS = 'additions',
