@@ -21,32 +21,70 @@ const Td = styled.td`
   border: 1px solid #ddd;
   padding: 8px;
 `;
+const StyledTable = styled.table`
+  border-collapse: collapse;
+  width: 100%;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  text-align: left;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+`;
 
+const StyledTableHeader = styled.th`
+  background-color: #ff9800;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #ccc;
+`;
+
+const StyledTableRow = styled.tr`
+  &:nth-child(even) td {
+    background-color: #f2f2f2;
+  }
+  &:hover td {
+    background-color: #ffedcc;
+  }
+`;
+
+const StyledTableCell = styled.td`
+  background-color: #fff;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+`;
 export const AdditionTable = (additions: any) => {
     const table = additions.additions.map((value: any) => {
-        return <tr>
-            <Td>{value?.amount}</Td>
-            <Td>{value?.description}</Td>
-            <Td>{value?.date}</Td>
-            <Td>{value?.id}</Td>
-        </tr>
+        return <StyledTableRow>
+            <StyledTableCell>{value?.amount}</StyledTableCell>
+            <StyledTableCell>{value?.description}</StyledTableCell>
+            <StyledTableCell>{value?.date}</StyledTableCell>
+            <StyledTableCell>{value?.id}</StyledTableCell>
+        </StyledTableRow>
     });
 
     return (
-        <TableContainer>
-            <Table>
+            <StyledTable>
                 <thead>
-                <tr>
-                    <Th>Amount</Th>
-                    <Th>Description</Th>
-                    <Th>Date</Th>
-                    <Th>Id</Th>
-                </tr>
+                <StyledTableRow>
+                    <StyledTableHeader>Amount</StyledTableHeader>
+                    <StyledTableHeader>Description</StyledTableHeader>
+                    <StyledTableHeader>Date</StyledTableHeader>
+                    <StyledTableHeader>Id</StyledTableHeader>
+                </StyledTableRow>
                 </thead>
                 <tbody>
                 {table}
                 </tbody>
-            </Table>
-        </TableContainer>
+            </StyledTable>
     );
 };

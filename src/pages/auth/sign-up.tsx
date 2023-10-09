@@ -5,30 +5,42 @@ import AuthService from "../../services/auth/auth-api-service";
 import {useNavigate} from "react-router-dom";
 
 const SignUpContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: #f9f9f9;
 `;
 
 const SignUpForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 `;
 
 const SignUpInput = styled.input`
   padding: 10px;
-  width: 300px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 `;
 
 const SignUpButton = styled.button`
-  padding: 10px;
-  background-color: #27ae60;
-  color: white;
+  padding: 12px 20px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
 `;
 
 export const SignUp = () => {
