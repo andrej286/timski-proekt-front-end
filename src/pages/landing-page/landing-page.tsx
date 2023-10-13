@@ -62,13 +62,13 @@ export const LandingPage = () => {
       </VideoContainer>
       <MainPart>
         <Logo src="free-bg.png" alt="LOGO TO HERE" />
-        <h1>Welcome to My Website</h1>
+        <h1>STORE ON ONE PLACE YOUR PURCHASES AND ADDITIONS</h1>
         <ButtonGroup>
           <Button>Purchases</Button>
           <Button>Upload new file</Button>
         </ButtonGroup>
         <Description>
-          Ovde ke ide nekoj opis taka edna podolga recenica za stranava za sto sluzi cisto koga ke otvori da procita.
+         Upload your purchases and additons and have a full control of them 
         </Description>
       </MainPart>
            </div>

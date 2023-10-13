@@ -2,7 +2,27 @@ import React, {useMemo, useState} from 'react';
 import ReactApexChart from 'react-apexcharts';
 import {ApexOptions} from "apexcharts";
 import {Purchase} from "./home";
+import styled from 'styled-components';
 
+const StyledSelect = styled.select`
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    border-color: #555;
+  }
+
+  &:focus {
+    border-color: #007bff;
+  }
+`;
 const monthNames = [
     "January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"
@@ -50,14 +70,14 @@ export const ColumnChart = (purchases: any) => {
 
     return (
         <>
-            <select value={selectedYear} onChange={(e) => {setSelectedYear(e.target.value)}}>
+            <StyledSelect value={selectedYear} onChange={(e) => {setSelectedYear(e.target.value)}}>
                 <option value="">Select</option>
                 {previousYears.map((year) => (
                     <option key={year} value={year}>
                         {year}
                     </option>
                 ))}
-            </select>
+            </StyledSelect>
             <ReactApexChart
                 options={chartOptions}
                 series={chartSeries}
