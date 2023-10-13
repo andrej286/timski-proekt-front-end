@@ -2,8 +2,8 @@ import axios, {AxiosRequestConfig} from "axios";
 import TokenService from "./auth/token-service";
 
 export const api = axios.create({
-    baseURL: "http://localhost:8000/",
-    // baseURL: "http://sekuloski.mk:27015",
+    baseURL: "https://tp.sekuloski.mk:8443/",
+    // baseURL: "http://localhost:8000/",
     headers: {
         "Content-Type": "application/json",
     },
@@ -11,8 +11,8 @@ export const api = axios.create({
 });
 
 export const fileApi = axios.create({
-    baseURL: "http://localhost:8000/",
-    // baseURL: "http://sekuloski.mk:27015",
+    baseURL: "https://tp.sekuloski.mk:8443/",
+    // baseURL: "http://localhost:8000/",
     headers: {
         "Content-Type": "multipart/form-data",
     },
