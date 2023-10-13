@@ -61,7 +61,7 @@ export const LandingPage = () => {
         <Video src="video.webm" autoPlay muted loop />
       </VideoContainer>
       <MainPart>
-        <Logo src="logo.jpg" alt="LOGO TO HERE" />
+        <Logo src="free-bg.png" alt="LOGO TO HERE" />
         <h1>Welcome to My Website</h1>
         <ButtonGroup>
           <Button>Purchases</Button>

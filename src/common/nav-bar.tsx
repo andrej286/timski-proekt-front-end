@@ -6,21 +6,30 @@ const Nav = styled.nav`
   background: #0082e6;
   height: 80px;
   width: 100%;
+  max-width: device-width; /* Ensures the navbar doesn't exceed the viewport width */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
 
-  @media (max-width: 952px) {
-    padding-left: 50px;
-  }
+
 `;
 
 const Logo = styled.label`
   color: white;
-  font-size: 35px;
+  font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
+`;
+
+const CenteredImage = styled.div`
+display: flex;
+align-items: center; /* Center the content vertically */
+justify-content: center; /* Center the content horizontally */
+width: 80px; /* Set the width of the centered image */
+height: 80px; /* Set the height of the centered image */
+background: url('free-bg.png') no-repeat center center/contain;
+cursor: pointer;
+background-color: transparent;
 `;
 
 const Ul = styled.ul`
@@ -29,13 +38,16 @@ const Ul = styled.ul`
 `;
 
 const Li = styled.li`
-  margin: 0 5px;
+  margin: 0 15px;
+
+  @media (max-width: 768px) {
+    margin: 0 10px;
+  }
 `;
 
 const NavLink = styled.a`
   color: white;
-  font-size: 17px;
-  padding: 7px 13px;
+  font-size: 1rem;
   border-radius: 3px;
   text-transform: uppercase;
   text-decoration: none;
@@ -47,10 +59,14 @@ const NavLink = styled.a`
   &.active {
     background: #1b9bff;
   }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const CheckBtn = styled.div`
-  font-size: 30px;
+  font-size: 2rem;
   color: white;
   cursor: pointer;
   display: none;
@@ -64,6 +80,7 @@ const Navbar = () => {
     return (
       <Nav>
       <Logo>My home bank</Logo>
+      <CenteredImage />
       <Ul>
         <Li><NavLink href="/home">Home</NavLink></Li>
         <Li><NavLink href="/log-in">Login</NavLink></Li>
